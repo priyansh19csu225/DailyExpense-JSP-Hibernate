@@ -16,11 +16,31 @@ public class ExpenseDetails implements Serializable {
     int id;
     
     String ename;
-    String edesc;
+    String eremark;
     int eprice;
-    @Temporal(value=TemporalType.TIMESTAMP)
+    @Temporal(value=TemporalType.DATE)
     Date edate;
+    String ecolor;
+    String eurl;
 
+
+	
+
+	public String getEcolor() {
+		return ecolor;
+	}
+
+	public void setEcolor(String ecolor) {
+		this.ecolor = ecolor;
+	}
+
+	public String getEurl() {
+		return eurl;
+	}
+
+	public void setEurl(String eurl) {
+		this.eurl = eurl;
+	}
 
 	public Date getEdate() {
 		return edate;
@@ -46,12 +66,12 @@ public class ExpenseDetails implements Serializable {
         this.ename = ename;
     }
 
-	public String getEdesc() {
-		return edesc;
+	public String getEremark() {
+		return eremark;
 	}
 
-	public void setEdesc(String edesc) {
-		this.edesc = edesc;
+	public void setEremark(String eremark) {
+		this.eremark = eremark;
 	}
 
 	public int getEprice() {
@@ -61,7 +81,7 @@ public class ExpenseDetails implements Serializable {
 	public void setEprice(int eprice) {
 		this.eprice = eprice;
 	}
-
+	
   
     
     

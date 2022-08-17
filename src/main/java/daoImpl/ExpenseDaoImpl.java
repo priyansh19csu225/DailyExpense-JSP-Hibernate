@@ -38,14 +38,16 @@ public class ExpenseDaoImpl implements ExpenseDao {
     }
     
     @Override
-    public void updateExpense(int id, String ename, String edesc , int eprice , Date edate ) {
+    public void updateExpense(int id, String ename, String eremark , int eprice , Date edate , String ecolor , String eurl) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         ExpenseDetails expdetails = session.load(ExpenseDetails.class, id);
         expdetails.setEname(ename);
-        expdetails.setEdesc(edesc);
+        expdetails.setEremark(eremark);
         expdetails.setEprice(eprice);
         expdetails.setEdate(edate);
+        expdetails.setEcolor(ecolor);
+        expdetails.setEurl(eurl);
         session.update(expdetails);
         transaction.commit();
         session.close();  

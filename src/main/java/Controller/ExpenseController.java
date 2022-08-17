@@ -3,6 +3,8 @@ package Controller;
 
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,13 +31,25 @@ public class ExpenseController extends HttpServlet {
             throws ServletException, IOException {
         if(request.getParameter("addExpense")!=null){
             String ename = request.getParameter("ename");
-            String edesc = request.getParameter("edesc");
             int eprice = Integer.parseInt(request.getParameter("eprice"));
+            String edate = request.getParameter("edate");
+            String ecolor = request.getParameter("ecolor");
+            String eurl = request.getParameter("eurl");
+            String eremark = request.getParameter("eremark");
             Expense.setEname(ename);
-            Expense.setEdesc(edesc);
             Expense.setEprice(eprice);
-            Date edate = new Date();
-            Expense.setEdate(edate);
+            Expense.setEcolor(ecolor);
+            Expense.setEurl(eurl);
+            Expense.setEremark(eremark);
+            
+            Date edate1 = null;
+			try {
+				edate1 = new SimpleDateFormat("yyyy-MM-dd").parse(edate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+            Expense.setEdate(edate1);
             ExpenseDaoImpl.saveExpense(Expense);
             List<ExpenseDetails> ExpenseList = new ArrayList();
             ExpenseList = ExpenseDaoImpl.showAllExpenses();
@@ -70,14 +84,19 @@ public class ExpenseController extends HttpServlet {
          
           if(request.getParameter("updateExpense")!=null){
              int id1 = Integer.parseInt(request.getParameter("id"));
-//             ExpenseDetails expense = ExpenseDaoImpl.showOneExpense(id1);
-//             request.setAttribute("record", expense);
-//             String enameupdate = request.getParameter("enameupdate");
              String enameupdate = request.getParameter("enameupdate");
-             String edescupdate = request.getParameter("edescupdate");
              int epriceupdate = Integer.parseInt(request.getParameter("epriceupdate"));
-             Date edateupdate = new Date();
-             ExpenseDaoImpl.updateExpense(id1, enameupdate, edescupdate, epriceupdate , edateupdate);
+             String edate = request.getParameter("edateupdate");
+             Date edateupdate = null;
+ 			try {
+ 				edateupdate = new SimpleDateFormat("yyyy-MM-dd").parse(edate);
+ 			} catch (ParseException e) {
+ 				e.printStackTrace();
+ 			}
+             String ecolorupdate = request.getParameter("ecolorupdate");
+             String eurlupdate = request.getParameter("eurlupdate");
+             String eremarkupdate = request.getParameter("eremarkupdate");
+             ExpenseDaoImpl.updateExpense(id1, enameupdate, eremarkupdate, epriceupdate , edateupdate , ecolorupdate, eurlupdate);
              List<ExpenseDetails> ExpenseList = new ArrayList();
              ExpenseList = ExpenseDaoImpl.showAllExpenses();
              request.setAttribute("ExpenseList", ExpenseList);

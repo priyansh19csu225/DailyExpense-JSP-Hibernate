@@ -33,15 +33,28 @@ $(document).ready(function(){
 			<table class="table">
 				<tr >
 					<td>Expense Name:</td>
-					<td><input type="text" name="ename"></td>
-				</tr>
-				<tr >
-					<td>Expense Description:</td>
-					<td><input type="text" name="edesc"></td>
+					<td><input type="text" name="ename" placeholder="Type Name Here"></td>
 				</tr>
 				<tr >
 					<td>Expense Price:</td>
-					<td><input type="text" name="eprice"></td>
+					<td><input type="range" value="0" name="eprice" min="0" max="5000" oninput="this.nextElementSibling.value = this.value"> <output>0</output></td>
+				</tr>
+				<tr >
+					<td>Expense Date:</td>
+					<td><input type="date" name="edate"></td>
+				</tr>
+				<tr >
+					<td>Expense Color:</td>
+					<td><input type="color" name="ecolor"></td>
+				</tr>
+				<tr >
+					<td>Expense URL:</td>
+					<td><input type="url" name="eurl" placeholder="Type URL here"></td>
+				</tr>
+				<tr >
+					<td>Expense Remarks:</td>
+				<!-- 	<td><input type="text" name="eremark"></td> -->
+					<td><textarea rows="4" cols="50" name="eremark" placeholder="Type Remarks here"></textarea></td>
 				</tr>
 				
 
@@ -61,9 +74,11 @@ $(document).ready(function(){
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Expense Name</th>
-					<th scope="col">Expense Description</th>
 					<th scope="col">Expense Price</th>
 					<th scope="col">Expense Date</th>
+					<th scope="col">Expense Color</th>
+					<th scope="col">Expense URL</th>
+					<th scope="col">Expense Remark</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -71,9 +86,11 @@ $(document).ready(function(){
 					<tr>
 						<th scope="row">${exp.id}</th>
 						<td>${exp.ename}</td>
-						<td>${exp.edesc}</td>
 						<td>${exp.eprice}</td>
 						<td>${exp.edate}</td>
+					    <td><input type="color" value="${exp.ecolor}" disabled></td> 
+					    <td>${exp.eurl}</td>
+						<td>${exp.eremark}</td>
 					</tr>
 				</c:forEach>
 
@@ -103,12 +120,24 @@ $(document).ready(function(){
 					<td><input type="text" id="enameupdate" name="enameupdate" value="${record.ename}"></td>
 				</tr>
 				<tr >
-					<td>Update Expense Description:</td>
-					<td><input type="text" id="edescupdate" name="edescupdate" value="${record.edesc}"></td>
-				</tr>
-				<tr >
 					<td>Update Expense Price:</td>
 					<td><input type="text" id="epriceupdate" name="epriceupdate" value="${record.eprice}" ></td>
+				</tr>
+				<tr >
+					<td>Update Expense Date:</td>
+					<td><input type="date" id="edateupdate" name="edateupdate" value="${record.edate}" ></td>
+				</tr>
+				<tr >
+					<td>Update Expense Color:</td>
+					<td><input type="color" id="ecolorupdate" name="ecolorupdate" value="${record.ecolor}" ></td>
+				</tr>
+				<tr >
+					<td>Update Expense URL:</td>
+					<td><input type="url" id="eurlupdate" name="eurlupdate" value="${record.eurl}" ></td>
+				</tr>
+				<tr >
+					<td>Update Expense Remark:</td>
+					<td><textarea rows="4" cols="50" name="eremarkupdate" id="eremarkupdate">${record.eremark}</textarea></td>
 				</tr>
 			</table>
 			</div>	
